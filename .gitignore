@@ -3,3 +3,6 @@
 ################################################################################
 
 /Sample/.vs/Sample/v15
+/Sample/Sample/obj
+/Sample/.vs/Sample/DesignTimeBuild
+/Sample/Sample/bin/Debug/netcoreapp2.2
