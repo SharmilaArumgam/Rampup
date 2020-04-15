@@ -4,22 +4,18 @@ using System.Text;
 
 namespace Sample
 {
-    class Adjective : Word
+    class Adjective : IWord
     {
+        string word;
+        string definition;
         List<string> AdjList = new List<string>();
 
-        public Adjective(string w, string def) : base(w, def)
+        public void Word(string w, string def)
         {
+            word = w;
+            definition = def;
             AdjList.Add(word);
             AdjList.Add(definition);
-        }
-
-        public void print()
-        {
-            foreach (var x in AdjList)
-            {
-                Console.WriteLine(x);
-            }
         }
     }
 }

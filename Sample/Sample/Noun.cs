@@ -4,23 +4,18 @@ using System.Text;
 
 namespace Sample
 {
-    class Noun : Word
+    class Noun : IWord
     {
-
+        string word;
+        string definition;
         List<string> NounList = new List<string>();
 
-        public Noun(string w, string def) : base(w,def)
+        public void Word(string w, string def)
         {
+            word = w;
+            definition = def;
             NounList.Add(word);
             NounList.Add(definition);
-        }
-
-        public void print()
-        { 
-        foreach (var x in NounList)
-            { 
-                Console.WriteLine(x);
-            }
         }
 
     }

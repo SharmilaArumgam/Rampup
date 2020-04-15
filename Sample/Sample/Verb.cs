@@ -4,22 +4,18 @@ using System.Text;
 
 namespace Sample
 {
-    class Verb : Word
+    class Verb : IWord
     {
-        List<string> VerbList = new List<string>();
+        string word;
+        string definition;
+        List<string> VList = new List<string>();
 
-        public Verb(string w, string def) : base(w, def)
+        public void Word(string w, string def)
         {
-            VerbList.Add(word);
-            VerbList.Add(definition);
-        }
-
-        public void print()
-        {
-            foreach (var x in VerbList)
-            {
-                Console.WriteLine(x);
-            }
+            word = w;
+            definition = def;
+            VList.Add(word);
+            VList.Add(definition);
         }
     }
 }

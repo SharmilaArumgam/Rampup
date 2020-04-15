@@ -4,22 +4,18 @@ using System.Text;
 
 namespace Sample
 {
-    class Preposition : Word
+    class Preposition : IWord
     {
+        string word;
+        string definition;
         List<string> PreList = new List<string>();
 
-        public Preposition(string w, string def) : base(w, def)
+        public void Word(string w, string def)
         {
+            word = w;
+            definition = def;
             PreList.Add(word);
             PreList.Add(definition);
-        }
-
-        public void print()
-        {
-            foreach (var x in PreList)
-            {
-                Console.WriteLine(x);
-            }
         }
     }
 }

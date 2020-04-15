@@ -4,22 +4,18 @@ using System.Text;
 
 namespace Sample
 {
-    class ProperNoun : Word
+    class ProperNoun : IWord
     {
+        string word;
+        string definition;
         List<string> ProList = new List<string>();
 
-        public ProperNoun(string w, string def) : base(w, def)
+        public void Word(string w, string def)
         {
+            word = w;
+            definition = def;
             ProList.Add(word);
             ProList.Add(definition);
-        }
-
-        public void print()
-        {
-            foreach (var x in ProList)
-            {
-                Console.WriteLine(x);
-            }
         }
     }
 }

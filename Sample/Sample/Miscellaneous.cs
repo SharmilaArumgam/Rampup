@@ -4,22 +4,18 @@ using System.Text;
 
 namespace Sample
 {
-    class Miscellaneous : Word
+    class Miscellaneous : IWord
     {
+        string word;
+        string definition;
         List<string> MiscList = new List<string>();
 
-        public Miscellaneous(string w, string def) : base(w, def)
+        public void Word(string w, string def)
         {
+            word = w;
+            definition = def;
             MiscList.Add(word);
             MiscList.Add(definition);
-        }
-
-        public void print()
-        {
-            foreach (var x in MiscList)
-            {
-                Console.WriteLine(x);
-            }
         }
     }
 }
