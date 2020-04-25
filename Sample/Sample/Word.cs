@@ -4,9 +4,16 @@ using System.Text;
 
 namespace Sample
 {
-    interface IWord
+    class Word
     {
-        void Word(string w, string def);
+        protected string word { get; set; }
+        protected string definition { get; set; }
+
+        public Word(string w, string def)
+        {
+            word = w;
+            definition = def;
+        }
 
         }
     }
