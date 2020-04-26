@@ -6,7 +6,7 @@ namespace Sample
 {
     class Verb : Word
     {
-        public Verb(string w, string def) : base(w, def)
+        public Verb(string w, string def, string t) : base(w, def, t)
         {
         }
     }

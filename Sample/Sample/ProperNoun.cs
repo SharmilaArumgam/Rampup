@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
 
 namespace Sample
 {
     class ProperNoun : Word
     {
-        public ProperNoun(string w, string def) : base(w, def)
+       public  ProperNoun(string w, string def, string t) : base(w, def, t)
+
         {
-            word = char.ToUpper(w[0]) + w.Substring(1).ToLower();
-            definition = char.ToUpper(def[0]) + def.Substring(1).ToLower();
+            word = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(w);
+
         }
     }
 }

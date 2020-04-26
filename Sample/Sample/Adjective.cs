@@ -6,7 +6,7 @@ namespace Sample
 {
     class Adjective : Word
     {
-        public Adjective(string w, string def) : base(w, def)
+        public Adjective(string w, string def, string t) : base(w, def, t)
         {
         }
     }

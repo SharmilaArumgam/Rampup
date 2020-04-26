@@ -6,7 +6,7 @@ namespace Sample
 {
     class Noun : Word
     {
-        public Noun(string w, string def) : base(w, def)
+        public Noun(string w, string def, string t) : base(w, def,t)
         {
         }
     }

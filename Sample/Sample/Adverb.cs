@@ -6,7 +6,7 @@ namespace Sample
 {
     class Adverb : Word
     {
-        public Adverb(string w, string def) : base(w, def)
+        public Adverb(string w, string def, string t) : base(w, def, t)
         {
         }
     }
