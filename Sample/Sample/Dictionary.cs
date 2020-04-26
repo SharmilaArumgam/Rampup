@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace Sample
 {
-    public class Dictionary
+    public static class Dictionary
     {
-        public static void Main(string[] args)
-        {
-            string filePath = @"D:\Test\test.txt";
-            List<string> lines = File.ReadAllLines(filePath).ToList();
+            static string filePath = @"D:\Test\test.txt";
+            static List<string> lines = File.ReadAllLines(filePath).ToList();
+            static List<Word> collection = new List<Word>();
 
-            List<Word> collection = new List<Word>();
+      public static void LoadWord()
+        { 
             int i = 0;
 
             foreach (string line in lines)
@@ -26,8 +26,8 @@ namespace Sample
                     case "n":
                         string n = lines[i - 3];
                         string n1 = lines[i - 2];
-                        Noun no = new Noun(n,n1);
-                        collection.Add(no);
+                       // Noun no = new Noun(n,n1);
+                        collection.Add(new Word(n,n1));
                         break;
 
 
@@ -78,5 +78,14 @@ namespace Sample
 
             }
         }
+
+        //public static void print()
+        //{
+        //    foreach(var x in collection)
+        //    {
+        //        Console.WriteLine("{0}", x.word);
+        //        Console.WriteLine("{0}",x.definition);
+        //    }
+        //}
     }
 }
