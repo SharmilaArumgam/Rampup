@@ -9,7 +9,7 @@ namespace Mvc_Start.Controllers
     public class MusicStoreController : Controller
     {
         // GET: MusicStore
-        [Authorize]
+       
         public ActionResult Index()
         {
             return View();
