@@ -9,9 +9,13 @@ namespace Sample
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Enter an option from 1-4");
-            int choice = Convert.ToInt32(Console.ReadLine());
             List<Word> collection = Dictionary.LoadWord();
+            Console.WriteLine("Enter an option from 1-4");
+            Console.WriteLine("1) Definition of a word");
+            Console.WriteLine("2) Number of words of each type");
+            Console.WriteLine("3) Anagram of a word");
+            Console.WriteLine("4) Scrabble Score for a word");
+            int choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {
                 case 1:
@@ -25,6 +29,7 @@ namespace Sample
                         Console.WriteLine("{0}", s.type);
                     }
                     break;
+
                 case 2:
                         Console.WriteLine("Number of words in each type:");
                         IEnumerable<Word> ncount = collection.Where(s => s.type == "n");
@@ -41,6 +46,15 @@ namespace Sample
                         Console.WriteLine("Preposition:{0}", prcount.Count());
                         IEnumerable<Word> adcount = collection.Where(s => s.type == "adv");
                         Console.WriteLine("Adverb:{0}", adcount.Count());
+                    break;
+
+                case 3:
+                    Console.WriteLine("Enter a word to find anagrams:");
+                    break;
+
+                case 4:
+                    Console.WriteLine("Enter a word to find the scrabble score:");
+                    
                     break;
 
             }
