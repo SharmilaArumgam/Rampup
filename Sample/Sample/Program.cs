@@ -7,7 +7,35 @@ namespace Sample
 
     class Program
     {
-        public static void Main(string[] args)
+        public static void getAnagram(string str, int f, int l)
+        {
+            if (f == l)
+            {
+                Console.WriteLine(str);
+            }
+            else
+            {
+                for (int i = f; i <= l; i++)
+                {
+                    str = swap(str, f, i);
+                    getAnagram(str, f + 1, l);
+                   // str = swap(str, f, i);
+                }
+            }
+        }
+            public static String swap(String a,
+                              int i, int j)
+            {
+                char temp;
+                char[] charArray = a.ToCharArray();
+                temp = charArray[i];
+                charArray[i] = charArray[j];
+                charArray[j] = temp;
+                string s = new string(charArray);
+                return s;
+            }
+
+            public static void Main(string[] args)
         {
             List<Word> collection = Dictionary.LoadWord();
             Console.WriteLine("Enter an option from 1-4");
@@ -50,11 +78,14 @@ namespace Sample
 
                 case 3:
                     Console.WriteLine("Enter a word to find anagrams:");
+                    string word = Console.ReadLine();
+                    int n = word.Length;
+                    //Console.WriteLine(n);
+                    getAnagram(word, 0, n - 1);
                     break;
 
                 case 4:
                     Console.WriteLine("Enter a word to find the scrabble score:");
-                    
                     break;
 
             }
