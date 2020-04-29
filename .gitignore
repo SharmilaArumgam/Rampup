@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/Mvc_Start
+/Mvc_CoreApplication/Mvc_CoreApplication/Properties
+/Mvc_CoreApplication/Mvc_CoreApplication/appsettings.Development.json
+/Mvc_CoreApplication/Mvc_CoreApplication/appsettings.json
