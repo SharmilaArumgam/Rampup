@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Mvc_CoreApplication.Models
 {
 	public class Home
 	{
+		public WebUser User { get; set; }
+
+		public List<string> Countries { get; set; }
 	}
 }
