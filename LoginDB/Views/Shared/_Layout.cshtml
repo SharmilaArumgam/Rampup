@@ -1,17 +1,63 @@
-﻿<html>
+﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> signInManager;
+
+<html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div class="container">
-            @RenderBody()
-        </div>
-        @if (IsSectionDefined("Scripts"))
-        {
-            @RenderSection("Scripts", required: true)
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        @*second static method for using partial views which returns a string that can be manipulated*@
+        @{
+            var partial = Html.Partial("_Header");
         }
+        @partial
+        <div class="container">
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <form method="post" asp-action="Logout" asp-controller="Home">
+                                <button type="submit" class="nav-link btn btn-link py-0" style="width:auto">
+                                    Logout @User.Identity.Name
+                                </button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-action="Register" asp-controller="Home" href="@Url.Action("Register", "Home")" class="nav-link">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Login" asp-controller="Home" href="@Url.Action("Login", "Home")" class="nav-link">Login</a>
+                        </li>
+                    }
 
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+     <div>
+        @RenderBody()
+    </div>
+
+    <div class="container">
+        @*one static method for using partial views which does not return anything*@
+
+        @{
+            Html.RenderPartial("_Footer");
+        }
+    </div>
 </body>
 </html>

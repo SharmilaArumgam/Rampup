@@ -1,0 +1,12 @@
+﻿body {
+    background-image: url('../Images/images.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+footer {
+    margin-top:35%;
+}
+#section {
+    text-align:center;
+    margin-top:5%;
+}

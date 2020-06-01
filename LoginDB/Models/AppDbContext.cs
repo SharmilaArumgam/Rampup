@@ -8,20 +8,18 @@ using System.Threading.Tasks;
 
 namespace LoginDB.Models
 {
-    public  class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
 
         }
-
-        public DbSet<User> Users { get; set; }
+        public override DbSet<IdentityUser> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             //modelBuilder.Seed();
         }
-
     }
 }

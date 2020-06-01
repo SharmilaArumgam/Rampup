@@ -21,8 +21,26 @@ namespace LoginDB.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
+        [ChildActionOnly]
+        public PartialViewResult GetBody()
+        {
+            return PartialView("_body");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Page()
         {
             return View();
         }
@@ -78,7 +96,7 @@ namespace LoginDB.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("page", "home");
                 }
 
                     ModelState.AddModelError(string.Empty,"Invalid Login Attempt");
@@ -98,7 +116,7 @@ namespace LoginDB.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         { 
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl = returnUrl ?? Url.Content("~/home/page");
 
               Login loginViewModel = new Login
             {
@@ -126,28 +144,28 @@ namespace LoginDB.Controllers
             {
                 return LocalRedirect(returnUrl);
             }
-            else
-            {
-                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-                if (email != null)
-                {
-                    var user = await userManager.FindByEmailAsync(email);
-                    if (user == null)
-                    {
-                        user = new ApplicationUser
-                        {
-                            UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
-                            Email = info.Principal.FindFirstValue(ClaimTypes.Email)
-                        };
-                        await userManager.CreateAsync(user);
-                    }
-                    await userManager.AddLoginAsync(user, info);
-                    await signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
-                }
-                ViewBag.ErrorTitle = $"Email claim not recieved from:{info.LoginProvider}";
-                ViewBag.ErrorMessage = "Please contact support in asharmi98@gmail.com";
-            }
+            //else
+            //{
+            //    var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+            //    if (email != null)
+            //    {
+            //        var user = await userManager.FindByEmailAsync(email);
+            //        if (user == null)
+            //        {
+            //            user = new ApplicationUser
+            //            {
+            //                UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
+            //                Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+            //            };
+            //            await userManager.CreateAsync(user);
+            //        }
+            //        await userManager.AddLoginAsync(user, info);
+            //        await signInManager.SignInAsync(user, isPersistent: false);
+            //        return LocalRedirect(returnUrl);
+            //    }
+            //    ViewBag.ErrorTitle = $"Email claim not recieved from:{info.LoginProvider}";
+            //    ViewBag.ErrorMessage = "Please contact support in asharmi98@gmail.com";
+            //}
             return View("Error");
         }
 
