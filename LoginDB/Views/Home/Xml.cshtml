@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "XML DATA PAGE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#click").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "https://localhost:44369/api/Api/GetData",
+                    cache: false,
+                    success: function (data) {
+                        console.log(data);
+                    }, //End of AJAX Success function
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h5 style="text-align:center; margin-top:4%;">XML DETAILS</h5>
+    </div>
+    <form id="form1">
+        <input type="button" id="click" value="Get XML Data" />
+    </form>
+</body>
+</html>

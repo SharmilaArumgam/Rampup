@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using Grpc.Core;
 using LoginDB.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using Newtonsoft.Json.Serialization;
+//using System.Web.Mvc;
 
 namespace LoginDB.Controllers
 {
-   // [Route("Home/Register")]
+    // [Route("Home/Register")]
     public class HomeController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
@@ -21,18 +23,58 @@ namespace LoginDB.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        [ChildActionOnly]
+        
         public PartialViewResult GetBody()
         {
             return PartialView("_body");
         }
 
+        public IActionResult Xml()
+        {
+            return View();//for getting xml data from api.
+        }
+
+        public JsonResult JsonData()
+        {
+            List<PersonalDetails> details = new List<PersonalDetails>();
+            details.Add(new PersonalDetails()
+            {
+                ID = 1,
+                NewsTitle = "Title1",
+                Body = "Admin News"
+            });
+            details.Add(new PersonalDetails()
+            {
+                ID = 2,
+                NewsTitle = "Title2",
+                Body = "Moderator News"
+            });
+            details.Add(new PersonalDetails()
+            {
+                ID = 3,
+                NewsTitle = "Title3",
+                Body = "User News"
+            });
+
+            //var json = Newtonsoft.Json.JsonConvert.SerializeObject(details);
+            //return Json(json, System.Web.Mvc.JsonRequestBehavior.AllowGet);
+            return Json(details);
+            //return Json(new { Name = "Sharmila Arumugam", ID = 1 });
+            //return Ok(details);
+        }
+
+        //[HttpPost]
+        //public ContentResult AjaxMethod()
+        //{
+        //    string xml = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/XML/Customers.xml"));
+        //    return Content(xml);
+        //}
 
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Page", "Home");
         }
 
         public IActionResult Index()
@@ -41,6 +83,21 @@ namespace LoginDB.Controllers
         }
 
         public IActionResult Page()
+        {
+            return View();
+        }
+
+        public IActionResult HtmlHelper()
+        {
+            return View();
+        }
+
+        public IActionResult Details()
+        {
+            return View();
+        }
+
+        public IActionResult CreateDetails()
         {
             return View();
         }

@@ -1,12 +1,26 @@
-﻿body {
-    background-image: url('../Images/images.jpg');
-    background-repeat:no-repeat;
-    background-size:cover;
+﻿footer {
+    margin-top: 373px;
+    background-color: black;
+    width: 100%;
+    height: 100%;
 }
-footer {
-    margin-top:35%;
-}
-#section {
+
+#body {
     text-align:center;
     margin-top:5%;
 }
+
+#section {
+    font-weight: bold;
+}
+
+.form-horizontal {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+input {
+    display: inline;
+}
+

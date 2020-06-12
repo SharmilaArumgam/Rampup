@@ -40,6 +40,12 @@
                         <li class="nav-item">
                             <a asp-action="Login" asp-controller="Home" href="@Url.Action("Login", "Home")" class="nav-link">Login</a>
                         </li>
+                        <li class="nav-item">
+                            <a asp-action="Details" asp-controller="Home" href="@Url.Action("Details", "Home")" class="nav-link">NewsFeed</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="CreateDetails" asp-controller="Home" href="@Url.Action("CreateDetails", "Home")" class="nav-link">Create News</a>
+                        </li>
                     }
 
                 </ul>
@@ -52,12 +58,10 @@
         @RenderBody()
     </div>
 
-    <div class="container">
         @*one static method for using partial views which does not return anything*@
 
         @{
             Html.RenderPartial("_Footer");
         }
-    </div>
 </body>
 </html>

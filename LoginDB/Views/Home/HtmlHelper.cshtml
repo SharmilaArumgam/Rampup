@@ -1,0 +1,70 @@
+﻿@using LoginDB.Models
+@using LoginDB.CustomHelper
+@using System.Web; 
+
+@model Student
+
+@{
+    ViewBag.Title = "HTML HELPER PAGE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HtmlHelper</title>
+</head>
+<body>
+    @*use of inline htmlhelpers*@
+    <div class="inline">
+        @*@helper AddHelper(int a, int b) {
+            <label>Addition of two No = @(a + b)</label>
+            }
+
+            <div style="background-color:azure;">
+                <label> @AddHelper(100, 200)</label>
+            </div>*@
+    </div>
+
+    @*use of built-in htmlhelpers*@
+    <div class="builtin">
+        @Html.Label("Name")
+        @Html.TextBox("txtname")
+        <br />
+        @Html.Label("Password")
+        @Html.Password("txtpwd")
+        <br />
+        @Html.Label("Remember Me")
+        @Html.CheckBox("rmbrme")
+        <br />
+        @Html.Label("Enter Comments")
+        @Html.TextArea("txtarea")
+        <br />
+        @Html.RadioButton("Gender", "Female")
+        @Html.RadioButtonFor(m => m.StudentGender, "Male")  @*Strongly typed requires lamda expression*@
+        <br />
+        @Html.DropDownListFor(m => m.StudentGender,
+                        new SelectList(Enum.GetValues(typeof(Gender))),
+                        "Select Gender")
+        <br />
+        @Html.Hidden("StudentId")
+        @Html.HiddenFor(m => m.StudentName)
+        <br />
+        @Html.DisplayFor(m => m.StudentName)
+        <br />
+        @Html.Editor("StudentId")
+    </div>
+
+    @*use of custom htmlhelpers*@
+<div class="customhelper">
+    @LoginDB.CustomHelper.CustomHelpers.CustomLabel("firstName", "First Name:")
+
+    @*@Html.CustomLabel("firstName", "First Name:")*@
+
+    @Html.HelloWorldHTMLString()
+
+</div>
+</body>
+</html>

@@ -3,19 +3,20 @@
     ViewBag.Title = "HOME PAGE";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <body style="background-image: url('../Images/images.jpg'); background-repeat: no-repeat;background-size: cover;">
+        <div class="container">
+            <h5 style="text-align:center; margin-top:4%;"> WELCOME HOME SHARMILA!</h5>
+        </div>
 
-<div class="container">
-    <h5 style="text-align:center; margin-top:4%;"> WELCOME HOME SHARMILA!</h5>
-</div>
+        <div class="container">
+            <div id="body">
 
-<div class="container">
-    <div id="body">
-
-    </div>
-</div>
-
-<script type="text/jscript">
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script type="text/jscript">
             $(document).ready(function () {
                 $("#body").load('/home/GetBody');
             });
-</script>
+        </script>
+    </body>

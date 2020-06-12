@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "CREATE DETAILS PAGE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#Save").click(function () {
+                var data = {
+                    newstitle: $("#email").val(),
+                    id: $("#id").val(),
+                    body: $("#name").val(),
+                }
+                $.ajax({
+                    url: "https://localhost:44369/api/Api/PostAllDetails",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    processData: false,
+                    data: JSON.stringify(data),
+                    success: function (data, textStatus, xhr) {
+                        console.log(data);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert(xhr.statusCode + ": " + xhr.status);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <form id="form1" class="form-horizontal">
+            <ul>
+                <li> 
+                    ID :-
+                <input type="text" name="id" id="id" /></li>
+                <li>
+                    News Title :-
+                    <input type="text" name="title" id="title" />
+                </li>
+                <li>
+                    Body:-
+                    <input type="text" name="body" id="body" />
+                </li>
+                <li>
+                    <input class="btn btn-primary" type="button" id="Save" value="Save News" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>
+
